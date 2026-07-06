@@ -15,7 +15,7 @@ export class AddFlowPage extends BasePage {
     '#select-option-resources-knative',
   );
   private readonly importStrategyEditButton = this.page.getByTestId('import-strategy-button');
-  private readonly dockerfileStrategy = this.page.getByTestId('import-strategy Dockerfile');
+  private readonly dockerfileStrategy = this.page.getByTestId('import-strategy-Dockerfile');
   private readonly dockerfilePathInput = this.page.locator(
     '#form-input-docker-dockerfilePath-field',
   );
@@ -55,7 +55,7 @@ export class AddFlowPage extends BasePage {
     const rateLimitMsg = this.page.getByText('Rate limit exceeded');
     if ((await rateLimitMsg.count()) > 0) {
       // Select "Builder Image" import strategy
-      const builderImageStrategy = this.page.getByTestId('import-strategy Builder Image');
+      const builderImageStrategy = this.page.getByTestId('import-strategy-Builder Image');
       if ((await builderImageStrategy.count()) > 0) {
         await this.robustClick(builderImageStrategy);
       }
@@ -105,7 +105,7 @@ export class AddFlowPage extends BasePage {
   }
 
   async selectBuilderImage(name: string): Promise<void> {
-    const strategy = this.page.getByTestId('import-strategy Builder Image');
+    const strategy = this.page.getByTestId('import-strategy-Builder Image');
     if ((await strategy.count()) > 0) {
       await this.robustClick(strategy);
       const card = this.page.locator('[data-test^="card "]').filter({ hasText: name });
